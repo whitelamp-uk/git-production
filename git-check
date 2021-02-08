@@ -1,0 +1,24 @@
+#!/bin/bash
+if [ "$1" = "pull" ]
+then
+    echo -n "This is a production system. Are you sure you want to git pull? [y/N] "
+    read chk
+    if [ "$chk" != "y" ]
+    then
+        if [ "$chk" != "Y" ]
+        then
+            exit
+        fi
+    fi
+fi
+ws="[[:space:]]"
+args=""
+for arg in "$@"
+do
+    if [[ $arg =~ $ws ]]
+    then
+        arg="\"$arg\""
+    fi
+    args="$args $arg"
+done
+/usr/bin/git $args
