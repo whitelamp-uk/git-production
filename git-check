@@ -3,7 +3,7 @@ echo "$(dirname $0)/git-check is forwarding command to /usr/bin/git"
 tmp="$(dirname "$0")/$?.tmp"
 if [ "$1" = "pull" ]
 then
-    echo -n "This is a production system. Are you sure you want to git pull? [y/N] "
+    echo -n "This is a production account. Are you sure you want to git pull? [y/N] "
     read chk
     if [ "$chk" != "y" ]
     then
