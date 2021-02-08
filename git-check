@@ -1,4 +1,5 @@
 #!/bin/bash
+tmp="$(dirname "$0")/$?.tmp"
 if [ "$1" = "pull" ]
 then
     echo -n "This is a production system. Are you sure you want to git pull? [y/N] "
@@ -21,4 +22,6 @@ do
     fi
     args="$args $arg"
 done
-/usr/bin/git $args
+echo /usr/bin/git $args > $tmp
+/bin/bash $tmp
+rm $tmp
