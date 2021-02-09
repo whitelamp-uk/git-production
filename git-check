@@ -9,6 +9,7 @@ then
     then
         if [ "$chk" != "Y" ]
         then
+            echo "Aborting git pull command"
             exit
         fi
     fi
