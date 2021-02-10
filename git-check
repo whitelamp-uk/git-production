@@ -6,7 +6,7 @@ for cmd in $cmds
 do
     if [ "$cmd" = "$1" ]
     then
-        echo "$0"
+        echo "This user account has git-production installed"
         echo -n "Are you really sure you want to \"git $cmd\"? [y/N] "
         read chk
         if [ "$chk" != "y" ] && [ "$chk" != "Y" ]
