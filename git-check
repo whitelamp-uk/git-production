@@ -16,19 +16,5 @@ then
 fi
 
 exec /usr/bin/git "$@"
-exit
 
-ws="[[:space:]]"
-args=""
-for arg in "$@"
-do
-    if [[ $arg =~ $ws ]]
-    then
-        arg="\"$arg\""
-    fi
-    args="$args $arg"
-done
-echo /usr/bin/git $args > $tmp
-/bin/bash $tmp
-rm $tmp
 
