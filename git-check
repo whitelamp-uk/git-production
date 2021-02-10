@@ -1,20 +1,25 @@
 #!/bin/bash
-echo "$(dirname $0)/git-check is forwarding command to /usr/bin/git"
-tmp="$(dirname "$0")/$?.tmp"
-if [ "$1" = "pull" ]
-then
-    echo -n "This is a production account. Are you sure you want to git pull? [y/N] "
-    read chk
-    if [ "$chk" != "y" ]
+git="/usr/bin/git"
+cmds="pull checkout"
+echo "--------"
+echo  "$(cd "$(dirname "${BASH_SOURCE[0]}")" > /dev/null 2>&1 && pwd)/git-check"
+echo "$git" "$@"
+echo "--------"
+for cmd in $cmds
+do
+    if [ "$cmd" = "$1" ]
     then
-        if [ "$chk" != "Y" ]
+        echo "$0"
+        echo -n "Are you really sure you want to \"git $cmd\"? [y/N] "
+        read chk
+        if [ "$chk" != "y" ]
         then
-            echo "Aborting git pull command"
-            exit
+            if [ "$chk" != "Y" ]
+            then
+                echo "Aborted"
+                exit
+            fi
         fi
     fi
-fi
-
-exec /usr/bin/git "$@"
-
-
+done
+exec "$git" "$@"
